@@ -25,9 +25,13 @@ component SoftMax_layer is
         outputReady : out std_logic);
 end component;
 
+signal convRes : word_t(299 downto 0);
+signal convResReady : std_logic := '0';
+
 begin
 
-
+conv: Convolutional_layer port map (inputReady, sentence, convRes, convResReady);
+softmax: SoftMax_layer port map (convResReady, convRes, prediction, outputReady);
 
 
 end Behavioral;

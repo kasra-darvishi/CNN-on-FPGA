@@ -19,7 +19,14 @@ component Convolve is
         outputReady : out std_logic);
 end component;
 
+signal filterRes1, filterRes2, filterRes3 : word_t(99 downto 0);
+signal fOutReady1, fOutReady2, fOutReady3 : std_logic;
+
 begin
+
+f1: Convolve generic map (3) port map (inputReady, sentence, filterRes1, fOutReady1);
+f2: Convolve generic map (4) port map (inputReady, sentence, filterRes2, fOutReady2);
+f3: Convolve generic map (5) port map (inputReady, sentence, filterRes3, fOutReady3);
 
 
 end Behavioral;
