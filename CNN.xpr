@@ -84,13 +84,8 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/imports/Data/test.txt">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/Data/test.txt"/>
-          <Attr Name="ImportTime" Val="1600546711"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/../Data for CNN/Data00.csv"/>
+      <File Path="$PPRDIR/../../../FinalProject/Data/Data01.csv"/>
+      <File Path="$PPRDIR/../../../FinalProject/Data/Data00.csv"/>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="testBench"/>
