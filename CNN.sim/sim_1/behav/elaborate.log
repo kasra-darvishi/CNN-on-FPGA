@@ -1,0 +1,25 @@
+Vivado Simulator 2015.4
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: D:/Program_files/Xilinx/Vivado/2015.4/bin/unwrapped/win64.o/xelab.exe -wto 86d849823be94ca997f110a492c06b44 --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testBench_behav xil_defaultlib.testBench -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package std.textio
+Compiling package xil_defaultlib.mypack
+Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [\Conv_mul(3)\]
+Compiling architecture behavioral of entity xil_defaultlib.Convolve [\Convolve(3)\]
+Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [\Conv_mul(4)\]
+Compiling architecture behavioral of entity xil_defaultlib.Convolve [\Convolve(4)\]
+Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [\Conv_mul(5)\]
+Compiling architecture behavioral of entity xil_defaultlib.Convolve [\Convolve(5)\]
+Compiling architecture behavioral of entity xil_defaultlib.Convolutional_layer [convolutional_layer_default]
+Compiling architecture behavioral of entity xil_defaultlib.SoftMax_layer [softmax_layer_default]
+Compiling architecture behavioral of entity xil_defaultlib.CNN [cnn_default]
+Compiling architecture behavioral of entity xil_defaultlib.testbench
+Built simulation snapshot testBench_behav
