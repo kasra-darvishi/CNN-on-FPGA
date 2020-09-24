@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="180970890fs"></ZoomStartTime>
-      <ZoomEndTime time="181983891fs"></ZoomEndTime>
-      <Cursor1Time time="181619890fs"></Cursor1Time>
+      <ZoomStartTime time="740000000fs"></ZoomStartTime>
+      <ZoomEndTime time="1177600001fs"></ZoomEndTime>
+      <Cursor1Time time="1112000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="371"></NameColumnWidth>
-      <ValueColumnWidth column_width="235"></ValueColumnWidth>
+      <ValueColumnWidth column_width="215"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="25" />
+   <WVObjectSize size="30" />
    <wvobject fp_name="/testBench/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -35,6 +35,44 @@
    <wvobject fp_name="/testBench/sentence" type="array">
       <obj_property name="ElementShortName">sentence[63:0][299:0]</obj_property>
       <obj_property name="ObjectShortName">sentence[63:0][299:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/filters1[2]" type="array">
+      <obj_property name="ElementShortName">[2][4:0][299:0]</obj_property>
+      <obj_property name="ObjectShortName">[2][4:0][299:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/filters1[1]" type="array">
+      <obj_property name="ElementShortName">[1][4:0][299:0]</obj_property>
+      <obj_property name="ObjectShortName">[1][4:0][299:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/filters1[0]" type="array">
+      <obj_property name="ElementShortName">[0][4:0][299:0]</obj_property>
+      <obj_property name="ObjectShortName">[0][4:0][299:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter" type="array">
+      <obj_property name="ElementShortName">filter[4:0][299:0]</obj_property>
+      <obj_property name="ObjectShortName">filter[4:0][299:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[4]" type="array">
+         <obj_property name="ElementShortName">[4][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][299:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[3]" type="array">
+         <obj_property name="ElementShortName">[3][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][299:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[2]" type="array">
+         <obj_property name="ElementShortName">[2][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][299:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[1]" type="array">
+         <obj_property name="ElementShortName">[1][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][299:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[0]" type="array">
+         <obj_property name="ElementShortName">[0][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][299:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/testBench/biases1" type="array">
       <obj_property name="ElementShortName">biases1[99:0]</obj_property>
@@ -79,6 +117,10 @@
    <wvobject fp_name="/testBench/UUT/conv/f1/sentIndx" type="other">
       <obj_property name="ElementShortName">sentIndx</obj_property>
       <obj_property name="ObjectShortName">sentIndx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/fIndx" type="other">
+      <obj_property name="ElementShortName">fIndx</obj_property>
+      <obj_property name="ObjectShortName">fIndx</obj_property>
    </wvobject>
    <wvobject fp_name="/testBench/UUT/conv/f1/mul1/sum" type="other">
       <obj_property name="ElementShortName">sum</obj_property>

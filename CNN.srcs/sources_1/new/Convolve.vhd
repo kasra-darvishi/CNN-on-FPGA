@@ -38,7 +38,7 @@ signal inputChecker: std_logic := '0';
 signal numberOfMultiplies : integer := 0;
 --signal numberOfFilters : integer := 99;
 signal numberOfFilters : integer := 0;
-signal convIndx, sentIndx: integer;
+signal convIndx, sentIndx, fIndx: integer;
 
 begin
 --filter <= filters(0);
@@ -49,7 +49,7 @@ begin
         case state is
             when init =>
                 numberOfMultiplies <= 64 - filterSize + 1; 
-                numberOfFilters <= 1;
+                numberOfFilters <= 100;
                 state <= waitForInput;
             when waitForInput =>
                 if (inputReady = inputChecker) then
@@ -71,19 +71,14 @@ begin
                     subSent(3) <= sentence(tmpNum + 3);
                     subSent(4) <= sentence(tmpNum + 4);
                 end if;
-                filter <= filters(0);
---                filter <= filters(100 - numberOfFilters);
-                bias <= biases(100 - numberOfFilters);
+                tmpNum := 100 - numberOfFilters;
+                fIndx <= tmpNum;
+                filter <= filters(tmpNum);
+                bias <= biases(tmpNum);
                 if (numberOfMultiplies = 1 and numberOfFilters = 1) then
                     state <= stall;
 --                    state <= init;
                 else
-                    if (numberOfMultiplies = 1) then
-                        numberOfMultiplies <= 64 - filterSize + 1;
-                        numberOfFilters <= numberOfFilters - 1;
-                    else
-                        numberOfMultiplies <= numberOfMultiplies - 1;
-                    end if;
                     state <= waitForConv;
                 end if;
             when waitForConv =>
@@ -91,7 +86,13 @@ begin
                     state <= waitForConv;
                 else
                     mulResultReadyVar <= mulResultReady;
-                    tmpNum := 64 - filterSize + 1 - numberOfMultiplies - 1;
+                    tmpNum := 64 - filterSize + 1 - numberOfMultiplies;
+                    if (numberOfMultiplies = 1) then
+                        numberOfMultiplies <= 64 - filterSize;
+                        numberOfFilters <= numberOfFilters - 1;
+                    else
+                        numberOfMultiplies <= numberOfMultiplies - 1;
+                    end if;
                     convIndx <= tmpNum;
                     convOut(tmpNum) <= mulOut;
                     state <= conv;

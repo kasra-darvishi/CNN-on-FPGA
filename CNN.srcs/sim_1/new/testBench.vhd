@@ -59,12 +59,14 @@ begin
         end loop l2;
     end loop l1;
     wait for 20 ns;
-    l3: for i in 0 to 2 loop
-        l4: for j in 0 to 299 loop
-            readline(test_vector2,row);
-            read(row,tmp);
-            filters1(0)(i)(j) <= tmp;
-        end loop l4;
+    l3: for i in 0 to 99 loop
+        l31: for j in 0 to 2 loop
+            l4: for k in 0 to 299 loop
+                readline(test_vector2,row);
+                read(row,tmp);
+                filters1(i)(j)(k) <= tmp;
+            end loop l4;
+        end loop l31;
     end loop l3;
     wait for 20 ns;
     inputReady <= not inputReady;
