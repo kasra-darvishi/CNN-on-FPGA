@@ -6,16 +6,12 @@ use xil_defaultlib.myPack.all;
 entity CNN is
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        sentence : in sent_t(63 downto 0)(299 downto 0);
-        filters1 : in array_t(99 downto 0)(filterSize downto 0)(299 downto 0);
-        filters2 : in array_t(99 downto 0)(filterSize downto 0)(299 downto 0);
-        filters3 : in array_t(99 downto 0)(filterSize downto 0)(299 downto 0);
-        biases1 : in word_t(99 downto 0);
-        biases2 : in word_t(99 downto 0);
-        biases3 : in word_t(99 downto 0);
+        sentence : in sent_t;
+        filters1, filters2, filters3 : in filter3_t;
+        biases1, biases2, biases3 : in word100_t;
         prediction : out std_logic;
         outputReady : out std_logic;
-        convOut : word_t(61 downto 0));
+        convOut : out word100_t);
 end CNN;
 
 architecture Behavioral of CNN is
@@ -23,27 +19,23 @@ architecture Behavioral of CNN is
 component Convolutional_layer is
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        sentence : in sent_t(63 downto 0)(299 downto 0);
-        filters1 : in array_t(99 downto 0)(filterSize downto 0)(299 downto 0);
-        filters2 : in array_t(99 downto 0)(filterSize downto 0)(299 downto 0);
-        filters3 : in array_t(99 downto 0)(filterSize downto 0)(299 downto 0);
-        biases1 : in word_t(99 downto 0);
-        biases2 : in word_t(99 downto 0);
-        biases3 : in word_t(99 downto 0);
-        result : out word_t(299 downto 0);
+        sentence : in sent_t;
+        filters1, filters2, filters3 : in filter3_t;
+        biases1, biases2, biases3 : in word100_t;
+        result : out word_t;
         outputReady : out std_logic;
-        convOut : word_t(61 downto 0));
+        convOut : out word100_t);
 end component;
 
 component SoftMax_layer is
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        input : in word_t(299 downto 0);
+        input : in word_t;
         prediction : out std_logic;
         outputReady : out std_logic);
 end component;
 
-signal convRes : word_t(299 downto 0);
+signal convRes : word_t;
 signal convResReady : std_logic := '0';
 
 begin

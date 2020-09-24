@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="testBench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="mypack" />
+            <top_module name="testBench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="180970890fs"></ZoomStartTime>
+      <ZoomEndTime time="181983891fs"></ZoomEndTime>
+      <Cursor1Time time="181619890fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="371"></NameColumnWidth>
+      <ValueColumnWidth column_width="235"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="/testBench/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/output" type="logic">
+      <obj_property name="ElementShortName">output</obj_property>
+      <obj_property name="ObjectShortName">output</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/inputReady" type="logic">
+      <obj_property name="ElementShortName">inputReady</obj_property>
+      <obj_property name="ObjectShortName">inputReady</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/sentence" type="array">
+      <obj_property name="ElementShortName">sentence[63:0][299:0]</obj_property>
+      <obj_property name="ObjectShortName">sentence[63:0][299:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/biases1" type="array">
+      <obj_property name="ElementShortName">biases1[99:0]</obj_property>
+      <obj_property name="ObjectShortName">biases1[99:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/biases2" type="array">
+      <obj_property name="ElementShortName">biases2[99:0]</obj_property>
+      <obj_property name="ObjectShortName">biases2[99:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/biases3" type="array">
+      <obj_property name="ElementShortName">biases3[99:0]</obj_property>
+      <obj_property name="ObjectShortName">biases3[99:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/prediction" type="logic">
+      <obj_property name="ElementShortName">prediction</obj_property>
+      <obj_property name="ObjectShortName">prediction</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/outputReady" type="logic">
+      <obj_property name="ElementShortName">outputReady</obj_property>
+      <obj_property name="ObjectShortName">outputReady</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/convOut" type="array">
+      <obj_property name="ElementShortName">convOut[99:0]</obj_property>
+      <obj_property name="ObjectShortName">convOut[99:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/state" type="other">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/numberOfMultiplies" type="other">
+      <obj_property name="ElementShortName">numberOfMultiplies</obj_property>
+      <obj_property name="ObjectShortName">numberOfMultiplies</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/numberOfFilters" type="other">
+      <obj_property name="ElementShortName">numberOfFilters</obj_property>
+      <obj_property name="ObjectShortName">numberOfFilters</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/convIndx" type="other">
+      <obj_property name="ElementShortName">convIndx</obj_property>
+      <obj_property name="ObjectShortName">convIndx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/sentIndx" type="other">
+      <obj_property name="ElementShortName">sentIndx</obj_property>
+      <obj_property name="ObjectShortName">sentIndx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/sum" type="other">
+      <obj_property name="ElementShortName">sum</obj_property>
+      <obj_property name="ObjectShortName">sum</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/state" type="other">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/wordLength" type="other">
+      <obj_property name="ElementShortName">wordLength</obj_property>
+      <obj_property name="ObjectShortName">wordLength</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filterWidth" type="other">
+      <obj_property name="ElementShortName">filterWidth</obj_property>
+      <obj_property name="ObjectShortName">filterWidth</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/indx0" type="other">
+      <obj_property name="ElementShortName">indx0</obj_property>
+      <obj_property name="ObjectShortName">indx0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/indx1" type="other">
+      <obj_property name="ElementShortName">indx1</obj_property>
+      <obj_property name="ObjectShortName">indx1</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/indx2" type="other">
+      <obj_property name="ElementShortName">indx2</obj_property>
+      <obj_property name="ObjectShortName">indx2</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/indx3" type="other">
+      <obj_property name="ElementShortName">indx3</obj_property>
+      <obj_property name="ObjectShortName">indx3</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/tval0" type="other">
+      <obj_property name="ElementShortName">tval0</obj_property>
+      <obj_property name="ObjectShortName">tval0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/tval1" type="other">
+      <obj_property name="ElementShortName">tval1</obj_property>
+      <obj_property name="ObjectShortName">tval1</obj_property>
+   </wvobject>
+</wave_config>

@@ -8,12 +8,12 @@ entity Convolve is
   Generic(filterSize: integer := 3);
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        sentence : in sent_t(63 downto 0)(299 downto 0);
-        filters : in array_t(99 downto 0)(filterSize downto 0)(299 downto 0);
-        biases : in word_t(99 downto 0);
-        result : out word_t(99 downto 0);
+        sentence : in sent_t;
+        filters : in filter3_t;
+        biases : in word100_t;
+        result : out word100_t;
         outputReady : out std_logic;
-        convOut : word_t(61 downto 0));
+        convOut : out word100_t);
 end Convolve;
 
 architecture Behavioral of Convolve is
@@ -22,25 +22,26 @@ component Conv_mul is
   Generic(filterSize: integer := 3);
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        sentence, filter : in sent_t(filterSize - 1 downto 0)(299 downto 0);
+        sentence, filter : in twod3_t;
         bias: in real;
         result : out real;
         outputReady : out std_logic);
 end component;
 
 signal mulInputReady, mulResultReady, mulResultReadyVar : std_logic := '0';
-signal subSent, filter : sent_t(filterSize - 1 downto 0)(299 downto 0);
+signal subSent, filter : twod3_t;
 signal bias, mulOut : real;
 
-type ST_TYPE is (init, waitForInput, conv, waitForConv);
+type ST_TYPE is (init, waitForInput, conv, waitForConv, stall);
 signal state : ST_TYPE := init;
 signal inputChecker: std_logic := '0';
 signal numberOfMultiplies : integer := 0;
---signal numberOfFilters : integer := 100;
-signal numberOfFilters : integer := 1;
+--signal numberOfFilters : integer := 99;
+signal numberOfFilters : integer := 0;
+signal convIndx, sentIndx: integer;
 
 begin
-
+--filter <= filters(0);
 process(clk)
 variable tmpNum : integer;
 begin
@@ -58,27 +59,45 @@ begin
                     state <= conv;
                 end if;
             when conv =>
-                if (numberOfMultiplies = 0 and numberOfFilters = 0) then
-                    state <= init;
+                mulInputReady <= not mulInputReady;
+                tmpNum := 64 - filterSize + 1 - numberOfMultiplies;
+                sentIndx <= tmpNum;
+                subSent(0) <= sentence(tmpNum);
+                subSent(1) <= sentence(tmpNum + 1);
+                subSent(2) <= sentence(tmpNum + 2);
+                if (filterSize = 4) then
+                    subSent(3) <= sentence(tmpNum + 3);
+                elsif (filterSize = 5) then
+                    subSent(3) <= sentence(tmpNum + 3);
+                    subSent(4) <= sentence(tmpNum + 4);
+                end if;
+                filter <= filters(0);
+--                filter <= filters(100 - numberOfFilters);
+                bias <= biases(100 - numberOfFilters);
+                if (numberOfMultiplies = 1 and numberOfFilters = 1) then
+                    state <= stall;
+--                    state <= init;
                 else
-                    mulInputReady <= not mulInputReady;
-                    tmpNum := 64 - filterSize + 1 - numberOfMultiplies;
-                    subSent <= sentence(tmpNum to tmpNum + filterSize - 1);
-                    filter <= filters(0)(0 to filterSize);
-                    bias <= biases(0);
-                    if (numberOfMultiplies = 0) then
+                    if (numberOfMultiplies = 1) then
                         numberOfMultiplies <= 64 - filterSize + 1;
                         numberOfFilters <= numberOfFilters - 1;
+                    else
+                        numberOfMultiplies <= numberOfMultiplies - 1;
                     end if;
-                    numberOfMultiplies <= numberOfMultiplies - 1;
                     state <= waitForConv;
                 end if;
             when waitForConv =>
                 if (mulResultReady = mulResultReadyVar) then
                     state <= waitForConv;
                 else
+                    mulResultReadyVar <= mulResultReady;
+                    tmpNum := 64 - filterSize + 1 - numberOfMultiplies - 1;
+                    convIndx <= tmpNum;
+                    convOut(tmpNum) <= mulOut;
                     state <= conv;
                 end if;
+            when stall =>
+                state <= stall;
             when others =>
                 state <= init;
         end case;

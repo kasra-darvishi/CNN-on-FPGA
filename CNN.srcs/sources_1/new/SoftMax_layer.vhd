@@ -7,7 +7,7 @@ use xil_defaultlib.myPack.all;
 entity SoftMax_layer is
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        input : in word_t(299 downto 0);
+        input : in word_t;
         prediction : out std_logic;
         outputReady : out std_logic);
 end SoftMax_layer;
