@@ -48,6 +48,7 @@ end process;
 p_read : process
 file test_vector : text open read_mode is "Data00.csv";
 file test_vector2 : text open read_mode is "Data01.csv";
+file test_vector3 : text open read_mode is "Data02.csv";
 variable row : line;
 variable tmp: real;
 begin
@@ -69,6 +70,11 @@ begin
         end loop l31;
     end loop l3;
     wait for 20 ns;
+    l5: for i in 0 to 99 loop
+        readline(test_vector3,row);
+        read(row,tmp);
+        biases1(i) <= tmp;
+    end loop l5;
     inputReady <= not inputReady;
     wait for 20 ns;
     wait for 99999999 us;

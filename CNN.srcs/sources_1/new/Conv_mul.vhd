@@ -59,6 +59,10 @@ begin
                     tmpLogic := not outputReadyVar;
                     outputReady <= tmpLogic;
                     outputReadyVar <= tmpLogic;
+                    tmpNum := tmpNum + bias;
+                    if (tmpNum < 0.0) then
+                        tmpNum := 0.0;
+                    end if;
                     result <= tmpNum;
                     state <= init;
                 else
