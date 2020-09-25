@@ -1,6 +1,6 @@
 webtalk_init -webtalk_dir D:/Programming/Projects/CNN-on-FPGA/CNN.sim/sim_1/behav/xsim/xsim.dir/testBench_behav/webtalk/
 webtalk_register_client -client project
-webtalk_add_data -client project -key date_generated -value "Fri Sep 25 13:39:24 2020" -context "software_version_and_target_device"
+webtalk_add_data -client project -key date_generated -value "Fri Sep 25 18:11:29 2020" -context "software_version_and_target_device"
 webtalk_add_data -client project -key product_version -value "XSIM v2020.1 (64-bit)" -context "software_version_and_target_device"
 webtalk_add_data -client project -key build_version -value "2902540" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_platform -value "WIN64" -context "software_version_and_target_device"
@@ -14,7 +14,7 @@ webtalk_add_data -client project -key target_package -value "not_applicable" -co
 webtalk_add_data -client project -key target_speed -value "not_applicable" -context "software_version_and_target_device"
 webtalk_add_data -client project -key random_id -value "dad058a8-a5cf-4edc-9199-f99213b8defc" -context "software_version_and_target_device"
 webtalk_add_data -client project -key project_id -value "86d849823be94ca997f110a492c06b44" -context "software_version_and_target_device"
-webtalk_add_data -client project -key project_iteration -value "62" -context "software_version_and_target_device"
+webtalk_add_data -client project -key project_iteration -value "69" -context "software_version_and_target_device"
 webtalk_add_data -client project -key os_name -value "Windows Server 2016 or Windows 10" -context "user_environment"
 webtalk_add_data -client project -key os_release -value "major release  (build 9200)" -context "user_environment"
 webtalk_add_data -client project -key cpu_name -value "Intel(R) Core(TM) i7-5500U CPU @ 2.40GHz" -context "user_environment"
@@ -33,10 +33,10 @@ webtalk_add_data -client xsim -key Debug -value "typical" -context "xsim\\comman
 webtalk_add_data -client xsim -key Simulation_Image_Code -value "69 KB" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Simulation_Image_Data -value "39 KB" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Nets -value "0" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Total_Processes -value "10" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Total_Processes -value "8" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Total_Instances -value "11" -context "xsim\\usage"
 webtalk_add_data -client xsim -key Xilinx_HDL_Libraries_Used -value "secureip " -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Time -value "1.40_sec" -context "xsim\\usage"
-webtalk_add_data -client xsim -key Compiler_Memory -value "62820_KB" -context "xsim\\usage"
-webtalk_transmit -clientid 3961141192 -regid "" -xml D:/Programming/Projects/CNN-on-FPGA/CNN.sim/sim_1/behav/xsim/xsim.dir/testBench_behav/webtalk/usage_statistics_ext_xsim.xml -html D:/Programming/Projects/CNN-on-FPGA/CNN.sim/sim_1/behav/xsim/xsim.dir/testBench_behav/webtalk/usage_statistics_ext_xsim.html -wdm D:/Programming/Projects/CNN-on-FPGA/CNN.sim/sim_1/behav/xsim/xsim.dir/testBench_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
+webtalk_add_data -client xsim -key Compiler_Time -value "1.81_sec" -context "xsim\\usage"
+webtalk_add_data -client xsim -key Compiler_Memory -value "62984_KB" -context "xsim\\usage"
+webtalk_transmit -clientid 2276819573 -regid "" -xml D:/Programming/Projects/CNN-on-FPGA/CNN.sim/sim_1/behav/xsim/xsim.dir/testBench_behav/webtalk/usage_statistics_ext_xsim.xml -html D:/Programming/Projects/CNN-on-FPGA/CNN.sim/sim_1/behav/xsim/xsim.dir/testBench_behav/webtalk/usage_statistics_ext_xsim.html -wdm D:/Programming/Projects/CNN-on-FPGA/CNN.sim/sim_1/behav/xsim/xsim.dir/testBench_behav/webtalk/usage_statistics_ext_xsim.wdm -intro "<H3>XSIM Usage Report</H3><BR>"
 webtalk_terminate

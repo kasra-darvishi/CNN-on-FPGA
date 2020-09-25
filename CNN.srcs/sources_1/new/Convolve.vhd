@@ -30,20 +30,20 @@ end component;
 
 signal mulInputReady, mulResultReady, mulResultReadyVar : std_logic := '0';
 signal subSent, filter : twod3_t;
-signal bias, mulOut : real;
+signal bias, mulOut, maxVal : real;
 
 type ST_TYPE is (init, waitForInput, conv, waitForConv, stall);
 signal state : ST_TYPE := init;
-signal inputChecker: std_logic := '0';
-signal numberOfMultiplies : integer := 0;
---signal numberOfFilters : integer := 99;
-signal numberOfFilters : integer := 0;
+signal inputChecker, outputReadyVar : std_logic := '0';
+signal numberOfMultiplies,numberOfFilters : integer := 0;
 signal convIndx, sentIndx, fIndx: integer;
 
 begin
 --filter <= filters(0);
 process(clk)
 variable tmpNum : integer;
+variable tmpVal : real;
+variable tmpLogic : std_logic;
 begin
     if (rising_edge(clk)) then
         case state is
@@ -51,6 +51,8 @@ begin
                 numberOfMultiplies <= 64 - filterSize + 1; 
                 numberOfFilters <= 100;
                 state <= waitForInput;
+                maxval <= -9999999.9;
+                outputReady <= outputReadyVar;
             when waitForInput =>
                 if (inputReady = inputChecker) then
                     state <= waitForInput;
@@ -75,27 +77,41 @@ begin
                 fIndx <= tmpNum;
                 filter <= filters(tmpNum);
                 bias <= biases(tmpNum);
-                if (numberOfMultiplies = 1 and numberOfFilters = 1) then
-                    state <= stall;
---                    state <= init;
-                else
-                    state <= waitForConv;
-                end if;
+                state <= waitForConv;
             when waitForConv =>
                 if (mulResultReady = mulResultReadyVar) then
                     state <= waitForConv;
                 else
+                    if (maxVal < mulOut) then
+                        maxVal <= mulOut;
+                        tmpVal := mulOut;
+                    else
+                        tmpVal := maxVal;
+                    end if;
                     mulResultReadyVar <= mulResultReady;
                     tmpNum := 64 - filterSize + 1 - numberOfMultiplies;
-                    if (numberOfMultiplies = 1) then
+                    if (numberOfMultiplies = 1 and numberOfFilters = 1) then
+                        tmpLogic := not outputReadyVar;
+                        outputReady <= tmpLogic;
+                        outputReadyVar <= tmpLogic;
+                        result(100 - numberOfFilters) <= tmpVal;
                         numberOfMultiplies <= 64 - filterSize;
                         numberOfFilters <= numberOfFilters - 1;
+                        maxVal <= -9999999.9;
+                        state <= stall;
+    --                    state <= init;
+                    elsif (numberOfMultiplies = 1) then
+                        result(100 - numberOfFilters) <= tmpVal;
+                        numberOfMultiplies <= 64 - filterSize;
+                        numberOfFilters <= numberOfFilters - 1;
+                        maxVal <= -9999999.9;
+                        state <= conv;
                     else
                         numberOfMultiplies <= numberOfMultiplies - 1;
+                        state <= conv;
                     end if;
                     convIndx <= tmpNum;
                     convOut(tmpNum) <= mulOut;
-                    state <= conv;
                 end if;
             when stall =>
                 state <= stall;

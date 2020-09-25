@@ -47,12 +47,6 @@ begin
                     state <= conv;
                 end if;
             when conv =>
-                indx0 <= filterSize - filterWidth - 1;
-                indx1 <= 300 - wordLength - 1;
-                indx2 <= filterWidth;
-                indx3 <= wordLength;
-                tval0 <= sentence(filterSize - filterWidth - 1)(300 - wordLength - 1);
-                tval1 <= filter(filterWidth)(wordLength);
                 tmpNum := sum + sentence(filterSize - filterWidth - 1)(300 - wordLength - 1)*filter(filterWidth)(wordLength);
                 sum <= tmpNum;
                 if (wordLength = 0 and filterWidth = 0) then

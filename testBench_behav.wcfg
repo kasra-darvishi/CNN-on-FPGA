@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="740000000fs"></ZoomStartTime>
-      <ZoomEndTime time="1177600001fs"></ZoomEndTime>
-      <Cursor1Time time="1112000000fs"></Cursor1Time>
+      <ZoomStartTime time="99142869501fs"></ZoomStartTime>
+      <ZoomEndTime time="100172626100fs"></ZoomEndTime>
+      <Cursor1Time time="100001000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="371"></NameColumnWidth>
-      <ValueColumnWidth column_width="215"></ValueColumnWidth>
+      <ValueColumnWidth column_width="205"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="30" />
+   <WVObjectSize size="34" />
    <wvobject fp_name="/testBench/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -51,7 +51,6 @@
    <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter" type="array">
       <obj_property name="ElementShortName">filter[4:0][299:0]</obj_property>
       <obj_property name="ObjectShortName">filter[4:0][299:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[4]" type="array">
          <obj_property name="ElementShortName">[4][299:0]</obj_property>
          <obj_property name="ObjectShortName">[4][299:0]</obj_property>
@@ -73,6 +72,26 @@
          <obj_property name="ObjectShortName">[0][299:0]</obj_property>
          <obj_property name="isExpanded"></obj_property>
       </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[4]" type="array">
+         <obj_property name="ElementShortName">[4][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][299:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[3]" type="array">
+         <obj_property name="ElementShortName">[3][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][299:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[2]" type="array">
+         <obj_property name="ElementShortName">[2][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][299:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[1]" type="array">
+         <obj_property name="ElementShortName">[1][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][299:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filter[0]" type="array">
+         <obj_property name="ElementShortName">[0][299:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][299:0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/testBench/biases1" type="array">
       <obj_property name="ElementShortName">biases1[99:0]</obj_property>
@@ -86,9 +105,17 @@
       <obj_property name="ElementShortName">biases3[99:0]</obj_property>
       <obj_property name="ObjectShortName">biases3[99:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/result" type="array">
+      <obj_property name="ElementShortName">result[99:0]</obj_property>
+      <obj_property name="ObjectShortName">result[99:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/testBench/prediction" type="logic">
       <obj_property name="ElementShortName">prediction</obj_property>
       <obj_property name="ObjectShortName">prediction</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/outputReady" type="logic">
+      <obj_property name="ElementShortName">outputReady</obj_property>
+      <obj_property name="ObjectShortName">outputReady</obj_property>
    </wvobject>
    <wvobject fp_name="/testBench/outputReady" type="logic">
       <obj_property name="ElementShortName">outputReady</obj_property>
@@ -101,6 +128,14 @@
    <wvobject fp_name="/testBench/UUT/conv/f1/state" type="other">
       <obj_property name="ElementShortName">state</obj_property>
       <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mulOut" type="other">
+      <obj_property name="ElementShortName">mulOut</obj_property>
+      <obj_property name="ObjectShortName">mulOut</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/maxVal" type="other">
+      <obj_property name="ElementShortName">maxVal</obj_property>
+      <obj_property name="ObjectShortName">maxVal</obj_property>
    </wvobject>
    <wvobject fp_name="/testBench/UUT/conv/f1/numberOfMultiplies" type="other">
       <obj_property name="ElementShortName">numberOfMultiplies</obj_property>
