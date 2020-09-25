@@ -11,9 +11,8 @@ entity Convolve is
         sentence : in sent_t;
         filters : in filter3_t;
         biases : in word100_t;
-        result : out word100_t;
-        outputReady : out std_logic;
-        convOut : out word100_t);
+        result : out word_ubt(99 downto 0);
+        outputReady : out std_logic);
 end Convolve;
 
 architecture Behavioral of Convolve is
@@ -36,7 +35,7 @@ type ST_TYPE is (init, waitForInput, conv, waitForConv, stall);
 signal state : ST_TYPE := init;
 signal inputChecker, outputReadyVar : std_logic := '0';
 signal numberOfMultiplies,numberOfFilters : integer := 0;
-signal convIndx, sentIndx, fIndx: integer;
+--signal convIndx, sentIndx, fIndx: integer;
 
 begin
 --filter <= filters(0);
@@ -63,7 +62,7 @@ begin
             when conv =>
                 mulInputReady <= not mulInputReady;
                 tmpNum := 64 - filterSize + 1 - numberOfMultiplies;
-                sentIndx <= tmpNum;
+--                sentIndx <= tmpNum;
                 subSent(0) <= sentence(tmpNum);
                 subSent(1) <= sentence(tmpNum + 1);
                 subSent(2) <= sentence(tmpNum + 2);
@@ -74,7 +73,7 @@ begin
                     subSent(4) <= sentence(tmpNum + 4);
                 end if;
                 tmpNum := 100 - numberOfFilters;
-                fIndx <= tmpNum;
+--                fIndx <= tmpNum;
                 filter <= filters(tmpNum);
                 bias <= biases(tmpNum);
                 state <= waitForConv;
@@ -89,7 +88,6 @@ begin
                         tmpVal := maxVal;
                     end if;
                     mulResultReadyVar <= mulResultReady;
-                    tmpNum := 64 - filterSize + 1 - numberOfMultiplies;
                     if (numberOfMultiplies = 1 and numberOfFilters = 1) then
                         tmpLogic := not outputReadyVar;
                         outputReady <= tmpLogic;
@@ -110,8 +108,6 @@ begin
                         numberOfMultiplies <= numberOfMultiplies - 1;
                         state <= conv;
                     end if;
-                    convIndx <= tmpNum;
-                    convOut(tmpNum) <= mulOut;
                 end if;
             when stall =>
                 state <= stall;
@@ -123,7 +119,5 @@ begin
 end process;
 
 mul1: Conv_mul generic map (filterSize) port map (clk, mulInputReady, subSent, filter, bias, mulOut, mulResultReady);
-
-
 
 end Behavioral;

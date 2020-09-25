@@ -49,6 +49,10 @@ p_read : process
 file test_vector : text open read_mode is "Data00.csv";
 file test_vector2 : text open read_mode is "Data01.csv";
 file test_vector3 : text open read_mode is "Data02.csv";
+file test_vector22 : text open read_mode is "Data11.csv";
+file test_vector32 : text open read_mode is "Data12.csv";
+file test_vector23 : text open read_mode is "Data21.csv";
+file test_vector33 : text open read_mode is "Data22.csv";
 variable row : line;
 variable tmp: real;
 begin
@@ -68,12 +72,32 @@ begin
                 filters1(i)(j)(k) <= tmp;
             end loop l4;
         end loop l31;
+        l311: for j in 0 to 3 loop
+            l41: for k in 0 to 299 loop
+                readline(test_vector22,row);
+                read(row,tmp);
+                filters2(i)(j)(k) <= tmp;
+            end loop l41;
+        end loop l311;
+        l3111: for j in 0 to 4 loop
+            l411: for k in 0 to 299 loop
+                readline(test_vector23,row);
+                read(row,tmp);
+                filters3(i)(j)(k) <= tmp;
+            end loop l411;
+        end loop l3111;
     end loop l3;
     wait for 20 ns;
     l5: for i in 0 to 99 loop
         readline(test_vector3,row);
         read(row,tmp);
         biases1(i) <= tmp;
+        readline(test_vector32,row);
+        read(row,tmp);
+        biases2(i) <= tmp;
+        readline(test_vector33,row);
+        read(row,tmp);
+        biases3(i) <= tmp;
     end loop l5;
     inputReady <= not inputReady;
     wait for 20 ns;
