@@ -19,6 +19,8 @@ Compiling architecture behavioral of entity xil_defaultlib.Convolve [\Convolve(f
 Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [\Conv_mul(filtersize=5)\]
 Compiling architecture behavioral of entity xil_defaultlib.Convolve [\Convolve(filtersize=5)\]
 Compiling architecture behavioral of entity xil_defaultlib.Convolutional_layer [convolutional_layer_default]
+Compiling architecture behavioral of entity xil_defaultlib.VecMul [vecmul_default]
+Compiling architecture behavioral of entity xil_defaultlib.SoftMax_layer [softmax_layer_default]
 Compiling architecture behavioral of entity xil_defaultlib.CNN [cnn_default]
 Compiling architecture behavioral of entity xil_defaultlib.testbench
 Built simulation snapshot testBench_behav
