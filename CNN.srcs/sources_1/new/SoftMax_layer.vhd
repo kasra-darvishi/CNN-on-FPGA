@@ -21,11 +21,11 @@ component VecMul is
         inputReady : in std_logic;
         input, weight1, weight2 : in word_ubt(299 downto 0);
         biases : in word_ubt(1 downto 0);
-        oval1, oval2 : out real;
+        oval1, oval2 : out std_logic_vector(31 downto 0);
         outputReady : out std_logic);
 end component;
 
-signal oval1, oval2 : real;
+signal oval1, oval2 : std_logic_vector(31 downto 0);
 signal vmOutReady : std_logic;
 
 begin

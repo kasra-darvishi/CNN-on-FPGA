@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="199999299990fs"></ZoomStartTime>
-      <ZoomEndTime time="199999612001fs"></ZoomEndTime>
-      <Cursor1Time time="200001000000fs"></Cursor1Time>
+      <ZoomStartTime time="27589706092fs"></ZoomStartTime>
+      <ZoomEndTime time="27589754393fs"></ZoomEndTime>
+      <Cursor1Time time="27589731092fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="370"></NameColumnWidth>
-      <ValueColumnWidth column_width="146"></ValueColumnWidth>
+      <NameColumnWidth column_width="422"></NameColumnWidth>
+      <ValueColumnWidth column_width="276"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="18" />
    <wvobject fp_name="/testBench/clk" type="logic">
@@ -33,63 +33,69 @@
       <obj_property name="ObjectShortName">inputReady</obj_property>
    </wvobject>
    <wvobject fp_name="/testBench/UUT/conv/result" type="array">
-      <obj_property name="ElementShortName">result[299:0]</obj_property>
-      <obj_property name="ObjectShortName">result[299:0]</obj_property>
+      <obj_property name="ElementShortName">result[299:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">result[299:0][31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/testBench/UUT/conv/outputReady" type="logic">
       <obj_property name="ElementShortName">outputReady</obj_property>
       <obj_property name="ObjectShortName">outputReady</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/weight1" type="array">
-      <obj_property name="ElementShortName">weight1[299:0]</obj_property>
-      <obj_property name="ObjectShortName">weight1[299:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/weight2" type="array">
-      <obj_property name="ElementShortName">weight2[299:0]</obj_property>
-      <obj_property name="ObjectShortName">weight2[299:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/biases" type="array">
-      <obj_property name="ElementShortName">biases[1:0]</obj_property>
-      <obj_property name="ObjectShortName">biases[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/state" type="other">
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/state" type="other">
       <obj_property name="ElementShortName">state</obj_property>
       <obj_property name="ObjectShortName">state</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/wordLength" type="other">
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/wordLength" type="other">
       <obj_property name="ElementShortName">wordLength</obj_property>
       <obj_property name="ObjectShortName">wordLength</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/indx0" type="other">
-      <obj_property name="ElementShortName">indx0</obj_property>
-      <obj_property name="ObjectShortName">indx0</obj_property>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/filterWidth" type="other">
+      <obj_property name="ElementShortName">filterWidth</obj_property>
+      <obj_property name="ObjectShortName">filterWidth</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/tval0" type="other">
-      <obj_property name="ElementShortName">tval0</obj_property>
-      <obj_property name="ObjectShortName">tval0</obj_property>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/tres1s" type="array">
+      <obj_property name="ElementShortName">tres1s[63:0]</obj_property>
+      <obj_property name="ObjectShortName">tres1s[63:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/tval1" type="other">
-      <obj_property name="ElementShortName">tval1</obj_property>
-      <obj_property name="ObjectShortName">tval1</obj_property>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/tss" type="array">
+      <obj_property name="ElementShortName">tss[63:0]</obj_property>
+      <obj_property name="ObjectShortName">tss[63:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/sum1" type="other">
-      <obj_property name="ElementShortName">sum1</obj_property>
-      <obj_property name="ObjectShortName">sum1</obj_property>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/tmpNums" type="array">
+      <obj_property name="ElementShortName">tmpNums[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tmpNums[31:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vm/sum2" type="other">
-      <obj_property name="ElementShortName">sum2</obj_property>
-      <obj_property name="ObjectShortName">sum2</obj_property>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/tmpNums2" type="array">
+      <obj_property name="ElementShortName">tmpNums2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tmpNums2[31:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/oval1" type="other">
-      <obj_property name="ElementShortName">oval1</obj_property>
-      <obj_property name="ObjectShortName">oval1</obj_property>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mul1/sum" type="array">
+      <obj_property name="ElementShortName">sum[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sum[31:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/oval2" type="other">
-      <obj_property name="ElementShortName">oval2</obj_property>
-      <obj_property name="ObjectShortName">oval2</obj_property>
+   <wvobject fp_name="/testBench/UUT/conv/f1/mulOut" type="array">
+      <obj_property name="ElementShortName">mulOut[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mulOut[31:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testBench/UUT/softmax/vmOutReady" type="logic">
-      <obj_property name="ElementShortName">vmOutReady</obj_property>
-      <obj_property name="ObjectShortName">vmOutReady</obj_property>
+   <wvobject fp_name="/testBench/UUT/conv/f1/maxVal" type="array">
+      <obj_property name="ElementShortName">maxVal[31:0]</obj_property>
+      <obj_property name="ObjectShortName">maxVal[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/state" type="other">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/numberOfMultiplies" type="other">
+      <obj_property name="ElementShortName">numberOfMultiplies</obj_property>
+      <obj_property name="ObjectShortName">numberOfMultiplies</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testBench/UUT/conv/f1/numberOfFilters" type="other">
+      <obj_property name="ElementShortName">numberOfFilters</obj_property>
+      <obj_property name="ObjectShortName">numberOfFilters</obj_property>
    </wvobject>
 </wave_config>

@@ -60,7 +60,7 @@ file test_vector33 : text open read_mode is "Data22.csv";
 file test_vector0 : text open read_mode is "Data0.csv";
 file test_vector1 : text open read_mode is "Data1.csv";
 variable row : line;
-variable tmp: real;
+variable tmp: std_logic_vector(31 downto 0);
 variable p1, p2 : integer := 0;
 variable b1 : std_logic := '0';
 begin

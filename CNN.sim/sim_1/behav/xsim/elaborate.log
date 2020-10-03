@@ -12,6 +12,7 @@ Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
 Compiling package xil_defaultlib.mypack
+Compiling package ieee.math_real
 Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [conv_mul_default]
 Compiling architecture behavioral of entity xil_defaultlib.Convolve [convolve_default]
 Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [\Conv_mul(filtersize=4)\]

@@ -1,5 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
+use ieee.math_real.all;
 library xil_defaultlib;
 use xil_defaultlib.myPack.all;
 
@@ -22,14 +24,14 @@ component Conv_mul is
   Port (clk: in std_logic;
         inputReady : in std_logic;
         sentence, filter : in twod3_t;
-        bias: in real;
-        result : out real;
+        bias: in std_logic_vector(31 downto 0);
+        result : out std_logic_vector(31 downto 0);
         outputReady : out std_logic);
 end component;
 
 signal mulInputReady, mulResultReady, mulResultReadyVar : std_logic := '0';
 signal subSent, filter : twod3_t;
-signal bias, mulOut, maxVal : real;
+signal bias, mulOut, maxVal : std_logic_vector(31 downto 0);
 
 type ST_TYPE is (init, waitForInput, conv, waitForConv, stall);
 signal state : ST_TYPE := init;
@@ -41,7 +43,7 @@ begin
 --filter <= filters(0);
 process(clk)
 variable tmpNum : integer;
-variable tmpVal : real;
+variable tmpVal : std_logic_vector(31 downto 0);
 variable tmpLogic : std_logic;
 begin
     if (rising_edge(clk)) then
@@ -50,7 +52,7 @@ begin
                 numberOfMultiplies <= 64 - filterSize + 1; 
                 numberOfFilters <= 100;
                 state <= waitForInput;
-                maxval <= -9999999.9;
+                maxval <= "10011100000000000000011010001110"; -- -99.99999
                 outputReady <= outputReadyVar;
             when waitForInput =>
                 if (inputReady = inputChecker) then
@@ -81,7 +83,7 @@ begin
                 if (mulResultReady = mulResultReadyVar) then
                     state <= waitForConv;
                 else
-                    if (maxVal < mulOut) then
+                    if (signed(maxVal) < signed(mulOut)) then
                         maxVal <= mulOut;
                         tmpVal := mulOut;
                     else
@@ -95,14 +97,14 @@ begin
                         result(100 - numberOfFilters) <= tmpVal;
                         numberOfMultiplies <= 64 - filterSize;
                         numberOfFilters <= numberOfFilters - 1;
-                        maxVal <= -9999999.9;
+                        maxVal <= "10011100000000000000011010001110"; -- -99.99999
                         state <= stall;
     --                    state <= init;
                     elsif (numberOfMultiplies = 1) then
                         result(100 - numberOfFilters) <= tmpVal;
                         numberOfMultiplies <= 64 - filterSize;
                         numberOfFilters <= numberOfFilters - 1;
-                        maxVal <= -9999999.9;
+                        maxVal <= "10011100000000000000011010001110"; -- -99.99999
                         state <= conv;
                     else
                         numberOfMultiplies <= numberOfMultiplies - 1;
