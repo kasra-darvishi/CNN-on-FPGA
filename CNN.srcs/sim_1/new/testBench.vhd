@@ -14,6 +14,8 @@ architecture Behavioral of testBench is
 component CNN is
   Port (clk: in std_logic;
         inputReady : in std_logic;
+        addra : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+        dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
         sentence : in sent_t;
         filters1, filters2, filters3 : in filter3_t;
         biases1, biases2, biases3 : in word100_t;
@@ -35,10 +37,13 @@ signal outputReady : std_logic;
 signal convOut : word100_t;
 signal weight1, weight2: word_ubt(299 downto 0);
 signal biases0 : word_ubt(1 downto 0);
+
+signal addra : STD_LOGIC_VECTOR(17 DOWNTO 0);
+signal dina : STD_LOGIC_VECTOR(31 DOWNTO 0);
 --signal clk: std_logic;
 
 begin
-UUT: CNN port map(clk, inputReady, sentence, filters1, filters2, filters3, biases1, biases2, biases3, weight1, weight2, biases0, prediction, outputReady, convOut);
+UUT: CNN port map(clk, inputReady, addra, dina, sentence, filters1, filters2, filters3, biases1, biases2, biases3, weight1, weight2, biases0, prediction, outputReady, convOut);
 
 
 clk_process :process

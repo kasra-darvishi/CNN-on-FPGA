@@ -6,6 +6,8 @@ use xil_defaultlib.myPack.all;
 entity CNN is
   Port (clk: in std_logic;
         inputReady : in std_logic;
+        addra : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+        dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
         sentence : in sent_t;
         filters1, filters2, filters3 : in filter3_t;
         biases1, biases2, biases3 : in word100_t;
@@ -21,6 +23,8 @@ architecture Behavioral of CNN is
 component Convolutional_layer is
   Port (clk: in std_logic;
         inputReady : in std_logic;
+        addra : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+        dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
         sentence : in sent_t;
         filters1, filters2, filters3 : in filter3_t;
         biases1, biases2, biases3 : in word100_t;
@@ -44,8 +48,7 @@ signal convResReady : std_logic := '0';
 
 begin
 
-conv: Convolutional_layer port map (clk, inputReady, sentence, filters1, filters2, filters3, biases1, biases2, biases3, convRes, convResReady, convOut);
+conv: Convolutional_layer port map (clk, inputReady, addra, dina, sentence, filters1, filters2, filters3, biases1, biases2, biases3, convRes, convResReady, convOut);
 softmax: SoftMax_layer port map (clk, convResReady, convRes, weight1, weight2, biases0, prediction, outputReady);
-
 
 end Behavioral;
