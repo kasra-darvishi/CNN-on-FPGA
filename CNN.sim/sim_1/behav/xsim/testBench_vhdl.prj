@@ -3,7 +3,7 @@ vhdl2008 xil_defaultlib  \
 "../../../../CNN.srcs/sources_1/new/myPack.vhd" \
 
 vhdl xil_defaultlib  \
-"../../../../CNN.srcs/sources_1/new/VecMul.vhd" \
+"../../../../CNN.srcs/sources_1/new/testmem.vhd" \
 
 vhdl2008 xil_defaultlib  \
 "../../../../CNN.srcs/sources_1/new/CNN.vhd" \
@@ -11,6 +11,7 @@ vhdl2008 xil_defaultlib  \
 "../../../../CNN.srcs/sources_1/new/Convolutional_layer.vhd" \
 "../../../../CNN.srcs/sources_1/new/Convolve.vhd" \
 "../../../../CNN.srcs/sources_1/new/SoftMax_layer.vhd" \
+"../../../../CNN.srcs/sources_1/new/VecMul.vhd" \
 "../../../../CNN.srcs/sim_1/new/testBench.vhd" \
 
 # Do not sort compile order

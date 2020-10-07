@@ -14,10 +14,14 @@ architecture Behavioral of testBench is
 component CNN is
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        addra : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
-        dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+        addra1 : IN integer;
+        dina1 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+        addra2 : IN integer;
+        dina2 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+        addra3 : IN integer;
+        dina3 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
         sentence : in sent_t;
-        filters1, filters2, filters3 : in filter3_t;
+        --filters1, filters2, filters3 : in filter3_t;
         biases1, biases2, biases3 : in word100_t;
         weight1, weight2: in word_ubt(299 downto 0);
         biases0 : in word_ubt(1 downto 0);
@@ -38,12 +42,16 @@ signal convOut : word100_t;
 signal weight1, weight2: word_ubt(299 downto 0);
 signal biases0 : word_ubt(1 downto 0);
 
-signal addra : STD_LOGIC_VECTOR(17 DOWNTO 0);
-signal dina : STD_LOGIC_VECTOR(31 DOWNTO 0);
+signal addra1 : integer;
+signal dina1 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+signal addra2 : integer;
+signal dina2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+signal addra3 : integer;
+signal dina3 : STD_LOGIC_VECTOR(31 DOWNTO 0);
 --signal clk: std_logic;
 
 begin
-UUT: CNN port map(clk, inputReady, addra, dina, sentence, filters1, filters2, filters3, biases1, biases2, biases3, weight1, weight2, biases0, prediction, outputReady, convOut);
+UUT: CNN port map(clk, inputReady, addra1, dina1, addra2, dina2, addra3, dina3, sentence, biases1, biases2, biases3, weight1, weight2, biases0, prediction, outputReady, convOut);
 
 
 clk_process :process
@@ -76,29 +84,66 @@ begin
             sentence(i)(j) <= tmp;
         end loop l2;
     end loop l1;
-    wait for 20 ns;
+    wait for 30 ns;
     l3: for i in 0 to 99 loop
-        l31: for j in 0 to 2 loop
+        l31: for j in 0 to 4 loop
             l4: for k in 0 to 299 loop
-                readline(test_vector2,row);
-                read(row,tmp);
-                filters1(i)(j)(k) <= tmp;
+                if (j = 4)then
+                    readline(test_vector23,row);
+                    read(row,tmp);
+                    addra3 <= i*5*300 + j*300 + k;
+                    dina3 <= tmp;
+--                    filters3(i)(j)(k) <= tmp;
+                else
+                    if (j = 3)then
+                        readline(test_vector22,row);
+                        read(row,tmp);
+                        addra2 <= i*4*300 + j*300 + k;
+                        dina2 <= tmp;
+--                        filters2(i)(j)(k) <= tmp;
+                        readline(test_vector23,row);
+                        read(row,tmp);
+                        addra3 <= i*5*300 + j*300 + k;
+                        dina3 <= tmp;
+--                        filters3(i)(j)(k) <= tmp;
+                    else
+                        readline(test_vector2,row);
+                        read(row,tmp);
+                        addra1 <= i*3*300 + j*300 + k;
+                        dina1 <= tmp;
+        --                filters1(i)(j)(k) <= tmp;
+                        readline(test_vector22,row);
+                        read(row,tmp);
+                        addra2 <= i*4*300 + j*300 + k;
+                        dina2 <= tmp;
+--                        filters2(i)(j)(k) <= tmp;
+                        readline(test_vector23,row);
+                        read(row,tmp);
+                        addra3 <= i*5*300 + j*300 + k;
+                        dina3 <= tmp;
+--                        filters3(i)(j)(k) <= tmp;
+                    end if;
+                end if;
+                wait for 20 ns;
+                if (k = 0) then
+                    wait for 60 ns;
+                end if;
             end loop l4;
         end loop l31;
-        l311: for j in 0 to 3 loop
-            l41: for k in 0 to 299 loop
-                readline(test_vector22,row);
-                read(row,tmp);
-                filters2(i)(j)(k) <= tmp;
-            end loop l41;
-        end loop l311;
-        l3111: for j in 0 to 4 loop
-            l411: for k in 0 to 299 loop
-                readline(test_vector23,row);
-                read(row,tmp);
-                filters3(i)(j)(k) <= tmp;
-            end loop l411;
-        end loop l3111;
+--        l311: for j in 0 to 3 loop
+--            l41: for k in 0 to 299 loop
+--                readline(test_vector22,row);
+--                read(row,tmp);
+--                filters2(i)(j)(k) <= tmp;
+--            end loop l41;
+--        end loop l311;
+--        l3111: for j in 0 to 4 loop
+--            l411: for k in 0 to 299 loop
+--                readline(test_vector23,row);
+--                read(row,tmp);
+--                filters3(i)(j)(k) <= tmp;
+--            end loop l411;
+--        end loop l3111;
     end loop l3;
     wait for 20 ns;
     l5: for i in 0 to 99 loop
@@ -131,7 +176,7 @@ begin
     end loop l8;
     inputReady <= not inputReady;
     wait for 20 ns;
-    wait for 99999999 us;
+    wait for 99999999 ms;
 end process;
 
 

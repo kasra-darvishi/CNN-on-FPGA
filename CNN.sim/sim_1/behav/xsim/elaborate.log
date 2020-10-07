@@ -1,6 +1,6 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: D:/Xilinx/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto 86d849823be94ca997f110a492c06b44 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testBench_behav xil_defaultlib.testBench -log elaborate.log 
+Running: D:/Xilinx/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto 86d849823be94ca997f110a492c06b44 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip -L xpm --snapshot testBench_behav xil_defaultlib.testBench -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -14,6 +14,7 @@ Compiling package ieee.numeric_std
 Compiling package xil_defaultlib.mypack
 Compiling package ieee.math_real
 Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [conv_mul_default]
+Compiling architecture behavioral of entity xil_defaultlib.testRAM [testram_default]
 Compiling architecture behavioral of entity xil_defaultlib.Convolve [convolve_default]
 Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [\Conv_mul(filtersize=4)\]
 Compiling architecture behavioral of entity xil_defaultlib.Convolve [\Convolve(filtersize=4)\]

@@ -1,8 +1,8 @@
 
 { 
-    crc :  4487580564770262796  , 
+    crc :  2035496959914816517  , 
     ccp_crc :  0  , 
-    cmdline : " -wto 86d849823be94ca997f110a492c06b44 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot testBench_behav xil_defaultlib.testBench" , 
+    cmdline : " -wto 86d849823be94ca997f110a492c06b44 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip -L xpm --snapshot testBench_behav xil_defaultlib.testBench" , 
     buildDate : "May 27 2020" , 
     buildTime : "20:09:33" , 
     linkCmd : "D:\\Xilinx\\Vivado\\2020.1\\data\\..\\tps\\mingw\\6.2.0\\win64.o\\nt\\bin\\gcc.exe -Wa,-W  -O -Wl,--stack,104857600 -o \"xsim.dir/testBench_behav/xsimk.exe\"   \"xsim.dir/testBench_behav/obj/xsim_0.win64.obj\" \"xsim.dir/testBench_behav/obj/xsim_1.win64.obj\" -L\"D:\\Xilinx\\Vivado\\2020.1\\lib\\win64.o\" -lrdi_simulator_kernel   -lrdi_simbridge_kernel" , 
