@@ -75,17 +75,17 @@ const int NumRelocateId= 15;
 void relocate(char *dp)
 {
 	iki_relocate(dp, "xsim.dir/testBench_behav/xsim.reloc",  (void **)funcTab, 15);
-	iki_vhdl_file_variable_register(dp + 45137760);
-	iki_vhdl_file_variable_register(dp + 45137816);
-	iki_vhdl_file_variable_register(dp + 45141504);
-	iki_vhdl_file_variable_register(dp + 45141560);
-	iki_vhdl_file_variable_register(dp + 45141616);
-	iki_vhdl_file_variable_register(dp + 45141672);
-	iki_vhdl_file_variable_register(dp + 45141728);
-	iki_vhdl_file_variable_register(dp + 45141784);
-	iki_vhdl_file_variable_register(dp + 45141840);
-	iki_vhdl_file_variable_register(dp + 45141896);
-	iki_vhdl_file_variable_register(dp + 45141952);
+	iki_vhdl_file_variable_register(dp + 47596632);
+	iki_vhdl_file_variable_register(dp + 47596688);
+	iki_vhdl_file_variable_register(dp + 47600456);
+	iki_vhdl_file_variable_register(dp + 47600512);
+	iki_vhdl_file_variable_register(dp + 47600568);
+	iki_vhdl_file_variable_register(dp + 47600624);
+	iki_vhdl_file_variable_register(dp + 47600680);
+	iki_vhdl_file_variable_register(dp + 47600736);
+	iki_vhdl_file_variable_register(dp + 47600792);
+	iki_vhdl_file_variable_register(dp + 47600848);
+	iki_vhdl_file_variable_register(dp + 47600904);
 
 
 	/*Populate the transaction function pointer field in the whole net structure */

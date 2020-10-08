@@ -12,7 +12,9 @@ entity Convolve is
         inputReady : in std_logic;
         addra : IN integer;
         dina : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-        sentence : in sent_t;
+        newSent : in std_logic;
+        sentence : in STD_LOGIC_VECTOR(31 DOWNTO 0);
+        sentAddr : in integer;
         --filters : in filter3_t;
         biases : in word100_t;
         result : out word_ubt(99 downto 0);
@@ -25,7 +27,8 @@ component Conv_mul is
   Generic(filterSize: integer := 3);
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        sentence, filter : in twod3_t;
+        sentence : in word_ubt((5*300)-1 downto 0);
+        filter : in twod3_t;
         bias: in std_logic_vector(31 downto 0);
         result : out std_logic_vector(31 downto 0);
         outputReady : out std_logic);
@@ -59,7 +62,8 @@ signal dinaSig : STD_LOGIC_VECTOR(31 DOWNTO 0);
 signal douta : STD_LOGIC_VECTOR(31 DOWNTO 0);
 
 signal mulInputReady, mulResultReady, mulResultReadyVar : std_logic := '0';
-signal subSent, filter : twod3_t;
+signal filter : twod3_t;
+signal subSent : word_ubt((5*300)-1 downto 0);
 signal bias, mulOut, maxVal : std_logic_vector(31 downto 0);
 
 type ST_TYPE is (init, waitForInput, conv, waitForConv, stall, loadData, readFilter, twoClockWait);
@@ -67,8 +71,8 @@ signal state : ST_TYPE := init;
 signal inputChecker, outputReadyVar : std_logic := '0';
 signal numberOfMultiplies,numberOfFilters : integer := 0;
 --signal convIndx, sentIndx, fIndx: integer;
-
 signal p1, p2, op1, op2, counter : integer := 0;
+signal sentenceSig : word_ubt((64*300)-1 downto 0);
 
 begin
 
@@ -91,6 +95,7 @@ begin
                 outputReady <= outputReadyVar;
             when waitForInput =>
                 if (inputReady = inputChecker) then
+                    sentenceSig(sentAddr) <= sentence;
                     state <= waitForInput;
                     memAddr <= std_logic_vector(to_unsigned(addra, memAddr'length));
                     dinaSig <= dina;
@@ -127,14 +132,14 @@ begin
                 mulInputReady <= not mulInputReady;
                 tmpNum := 64 - filterSize + 1 - numberOfMultiplies;
 --                sentIndx <= tmpNum;
-                subSent(0) <= sentence(tmpNum);
-                subSent(1) <= sentence(tmpNum + 1);
-                subSent(2) <= sentence(tmpNum + 2);
+                subSent(300-1 downto 0) <= sentenceSig((tmpNum+1)*300-1 downto tmpNum*300);
+                subSent(2*300-1 downto 300) <= sentenceSig((tmpNum+2)*300-1 downto (tmpNum+1)*300);
+                subSent(3*300-1 downto 2*300) <= sentenceSig((tmpNum+3)*300-1 downto (tmpNum+2)*300);
                 if (filterSize = 4) then
-                    subSent(3) <= sentence(tmpNum + 3);
+                    subSent(4*300-1 downto 3*300) <= sentenceSig((tmpNum+4)*300-1 downto (tmpNum+3)*300);
                 elsif (filterSize = 5) then
-                    subSent(3) <= sentence(tmpNum + 3);
-                    subSent(4) <= sentence(tmpNum + 4);
+                    subSent(4*300-1 downto 3*300) <= sentenceSig((tmpNum+4)*300-1 downto (tmpNum+3)*300);
+                    subSent(5*300-1 downto 4*300) <= sentenceSig((tmpNum+5)*300-1 downto (tmpNum+4)*300);
                 end if;
                 tmpNum := 100 - numberOfFilters;
 --                filter <= filters(tmpNum);

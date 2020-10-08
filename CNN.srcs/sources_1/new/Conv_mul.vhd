@@ -9,7 +9,8 @@ entity Conv_mul is
   Generic(filterSize: integer := 3);
   Port (clk: in std_logic;
         inputReady : in std_logic;
-        sentence, filter : in twod3_t;
+        sentence : in word_ubt((5*300)-1 downto 0);
+        filter : in twod3_t;
         bias: in std_logic_vector(31 downto 0);
         result : out std_logic_vector(31 downto 0);
         outputReady : out std_logic);
@@ -54,13 +55,13 @@ begin
                     state <= conv;
                 end if;
             when conv =>
-                tres1 := std_logic_vector(signed(sentence(filterSize - filterWidth - 1)(300 - wordLength - 1)) * signed(filter(filterWidth)(wordLength)));
-                tres1s <= std_logic_vector(signed(sentence(filterSize - filterWidth - 1)(300 - wordLength - 1)) * signed(filter(filterWidth)(wordLength)));
+                tres1 := std_logic_vector(signed(sentence((filterSize - filterWidth - 1)*300 + (300 - wordLength - 1))) * signed(filter(filterWidth)(wordLength)));
+                tres1s <= std_logic_vector(signed(sentence((filterSize - filterWidth - 1)*300 + (300 - wordLength - 1))) * signed(filter(filterWidth)(wordLength)));
                 indx0 <= 300 - wordLength - 1; 
                 indx1 <= wordLength;
                 indx2 <= filterSize - filterWidth - 1;
                 indx3 <= filterWidth;
-                tval0 <= sentence(filterSize - filterWidth - 1)(300 - wordLength - 1);
+                tval0 <= sentence((filterSize - filterWidth - 1)*300 + (300 - wordLength - 1));
                 tval1 <= filter(filterWidth)(wordLength);
                 ts := shift_right(signed(tres1),24);
                 tss <= shift_right(signed(tres1),24);

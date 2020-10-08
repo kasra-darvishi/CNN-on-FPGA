@@ -20,7 +20,10 @@ component CNN is
         dina2 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
         addra3 : IN integer;
         dina3 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-        sentence : in sent_t;
+        newSent : in std_logic;
+        sentence : in STD_LOGIC_VECTOR(31 DOWNTO 0);
+        sentAddr : in integer;
+--        sentence : in sent_t;
         --filters1, filters2, filters3 : in filter3_t;
         biases1, biases2, biases3 : in word100_t;
         weight1, weight2: in word_ubt(299 downto 0);
@@ -33,7 +36,10 @@ end component;
 signal clk, output: std_logic;
 
 signal inputReady : std_logic := '0';
-signal sentence : sent_t;
+--signal sentence : sent_t;
+signal newSent : std_logic := '0';
+signal sentence : STD_LOGIC_VECTOR(31 DOWNTO 0);
+signal sentAddr : integer;
 signal filters1, filters2, filters3 : filter3_t;
 signal biases1, biases2, biases3 : word100_t;
 signal prediction : std_logic;
@@ -51,8 +57,7 @@ signal dina3 : STD_LOGIC_VECTOR(31 DOWNTO 0);
 --signal clk: std_logic;
 
 begin
-UUT: CNN port map(clk, inputReady, addra1, dina1, addra2, dina2, addra3, dina3, sentence, biases1, biases2, biases3, weight1, weight2, biases0, prediction, outputReady, convOut);
-
+UUT: CNN port map(clk, inputReady, addra1, dina1, addra2, dina2, addra3, dina3, newSent, sentence, sentAddr, biases1, biases2, biases3, weight1, weight2, biases0, prediction, outputReady, convOut);
 
 clk_process :process
 begin
@@ -77,13 +82,18 @@ variable tmp: std_logic_vector(31 downto 0);
 variable p1, p2 : integer := 0;
 variable b1 : std_logic := '0';
 begin
+    newSent <= not newSent;
     l1: for i in 0 to 63 loop
         l2: for j in 0 to 299 loop
             readline(test_vector,row);
             read(row,tmp);
-            sentence(i)(j) <= tmp;
+            sentence <= tmp;
+            sentAddr <= i*300 + j;
+--            sentence(i)(j) <= tmp;
+            wait for 20 ns;
         end loop l2;
     end loop l1;
+    newSent <= not newSent;
     wait for 30 ns;
     l3: for i in 0 to 99 loop
         l31: for j in 0 to 4 loop

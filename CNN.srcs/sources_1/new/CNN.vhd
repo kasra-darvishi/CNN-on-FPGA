@@ -12,7 +12,9 @@ entity CNN is
         dina2 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
         addra3 : IN integer;
         dina3 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-        sentence : in sent_t;
+        newSent : in std_logic;
+        sentence : in STD_LOGIC_VECTOR(31 DOWNTO 0);
+        sentAddr : in integer;
         --filters1, filters2, filters3 : in filter3_t;
         biases1, biases2, biases3 : in word100_t;
         weight1, weight2: in word_ubt(299 downto 0);
@@ -33,7 +35,9 @@ component Convolutional_layer is
         dina2 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
         addra3 : IN integer;
         dina3 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-        sentence : in sent_t;
+        newSent : in std_logic;
+        sentence : in STD_LOGIC_VECTOR(31 DOWNTO 0);
+        sentAddr : in integer;
         --filters1, filters2, filters3 : in filter3_t;
         biases1, biases2, biases3 : in word100_t;
         result : out word_ubt(299 downto 0);
@@ -56,7 +60,7 @@ signal convResReady : std_logic := '0';
 
 begin
 
-conv: Convolutional_layer port map (clk, inputReady, addra1, dina1, addra2, dina2, addra3, dina3, sentence, biases1, biases2, biases3, convRes, convResReady, convOut);
+conv: Convolutional_layer port map (clk, inputReady, addra1, dina1, addra2, dina2, addra3, dina3, newSent, sentence, sentAddr, biases1, biases2, biases3, convRes, convResReady, convOut);
 softmax: SoftMax_layer port map (clk, convResReady, convRes, weight1, weight2, biases0, prediction, outputReady);
 
 end Behavioral;
