@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Wed Oct 14 14:29:02 2020
+# Process ID: 12252
+# Current directory: D:/Programming/Projects/CNN-on-FPGA
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13384 D:\Programming\Projects\CNN-on-FPGA\CNN.xpr
+# Log file: D:/Programming/Projects/CNN-on-FPGA/vivado.log
+# Journal file: D:/Programming/Projects/CNN-on-FPGA\vivado.jou
+#-----------------------------------------------------------
+start_gui

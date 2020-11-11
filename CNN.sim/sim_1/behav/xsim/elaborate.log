@@ -1,6 +1,6 @@
 Vivado Simulator 2020.1
 Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
-Running: D:/Xilinx/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto 86d849823be94ca997f110a492c06b44 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip -L xpm --snapshot testBench_behav xil_defaultlib.testBench -log elaborate.log 
+Running: D:/Xilinx2/Vivado/2020.1/bin/unwrapped/win64.o/xelab.exe -wto 86d849823be94ca997f110a492c06b44 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip -L xpm --snapshot testBench_behav xil_defaultlib.testBench -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -12,17 +12,21 @@ Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
 Compiling package xil_defaultlib.mypack
-Compiling package ieee.math_real
+Compiling architecture behavioral of entity xil_defaultlib.genMem [\genMem(memsize=90000,len=16)\]
+Compiling architecture behavioral of entity xil_defaultlib.BaseMul [basemul_default]
 Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [conv_mul_default]
-Compiling architecture behavioral of entity xil_defaultlib.testRAM [testram_default]
-Compiling architecture behavioral of entity xil_defaultlib.Convolve [convolve_default]
+Compiling architecture behavioral of entity xil_defaultlib.testRAM2 [testram2_default]
+Compiling architecture behavioral of entity xil_defaultlib.Convolve_ctrl [convolve_ctrl_default]
+Compiling architecture behavioral of entity xil_defaultlib.genMem [\genMem(memsize=120000,len=16)\]
 Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [\Conv_mul(filtersize=4)\]
-Compiling architecture behavioral of entity xil_defaultlib.Convolve [\Convolve(filtersize=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.Convolve_ctrl [\Convolve_ctrl(filtersize=4)\]
+Compiling architecture behavioral of entity xil_defaultlib.genMem [\genMem(memsize=150000)\]
 Compiling architecture behavioral of entity xil_defaultlib.Conv_mul [\Conv_mul(filtersize=5)\]
-Compiling architecture behavioral of entity xil_defaultlib.Convolve [\Convolve(filtersize=5)\]
+Compiling architecture behavioral of entity xil_defaultlib.Convolve_ctrl [\Convolve_ctrl(filtersize=5)\]
 Compiling architecture behavioral of entity xil_defaultlib.Convolutional_layer [convolutional_layer_default]
 Compiling architecture behavioral of entity xil_defaultlib.VecMul [vecmul_default]
 Compiling architecture behavioral of entity xil_defaultlib.SoftMax_layer [softmax_layer_default]
 Compiling architecture behavioral of entity xil_defaultlib.CNN [cnn_default]
+Compiling architecture behavioral of entity xil_defaultlib.Main [main_default]
 Compiling architecture behavioral of entity xil_defaultlib.testbench
 Built simulation snapshot testBench_behav

@@ -1,16 +1,21 @@
 # compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../CNN.srcs/sources_1/new/BaseMul.vhd" \
+
 vhdl2008 xil_defaultlib  \
 "../../../../CNN.srcs/sources_1/new/myPack.vhd" \
 
 vhdl xil_defaultlib  \
-"../../../../CNN.srcs/sources_1/new/testmem.vhd" \
+"../../../../CNN.srcs/new/CNN.vhd" \
+"../../../../CNN.srcs/new/Convolutional_layer.vhd" \
+"../../../../CNN.srcs/new/Main.vhd" \
+"../../../../CNN.srcs/new/SoftMax_layer.vhd" \
+"../../../../CNN.srcs/sources_1/new/genMem.vhd" \
+"../../../../CNN.srcs/sources_1/new/testmem2.vhd" \
 
 vhdl2008 xil_defaultlib  \
-"../../../../CNN.srcs/sources_1/new/CNN.vhd" \
 "../../../../CNN.srcs/sources_1/new/Conv_mul.vhd" \
-"../../../../CNN.srcs/sources_1/new/Convolutional_layer.vhd" \
 "../../../../CNN.srcs/sources_1/new/Convolve.vhd" \
-"../../../../CNN.srcs/sources_1/new/SoftMax_layer.vhd" \
 "../../../../CNN.srcs/sources_1/new/VecMul.vhd" \
 "../../../../CNN.srcs/sim_1/new/testBench.vhd" \
 

@@ -33,6 +33,14 @@ component CNN is
         convOut : out word100_t);
 end component;
 
+component Main is
+     Port (clk : in std_logic;
+        newIn: in std_logic;
+        inVec: in std_logic_vector(31 downto 0);
+        newOut: out std_logic;
+        outVec: out std_logic_vector(31 downto 0));
+end component;
+
 signal clk, output: std_logic;
 
 signal inputReady : std_logic := '0';
@@ -55,9 +63,18 @@ signal dina2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
 signal addra3 : integer;
 signal dina3 : STD_LOGIC_VECTOR(31 DOWNTO 0);
 --signal clk: std_logic;
+Signal    newIn:  std_logic;
+Signal    inVec:  std_logic_vector(31 downto 0);
+Signal    newOut:  std_logic;
+Signal    outVec:  std_logic_vector(31 downto 0);
+type ST_TYPE is (init, getSentnc, getfilt1, getfilt2, getfilt3, getbias1, getbias2, getbias3, getweights, getbias0, waitForCNN);
+signal state2 : ST_TYPE := init;
+signal b1_s : std_logic := '0';
+signal p1_s, p2_s : integer := 0;
 
 begin
-UUT: CNN port map(clk, inputReady, addra1, dina1, addra2, dina2, addra3, dina3, newSent, sentence, sentAddr, biases1, biases2, biases3, weight1, weight2, biases0, prediction, outputReady, convOut);
+--UUT: CNN port map(clk, inputReady, addra1, dina1, addra2, dina2, addra3, dina3, newSent, sentence, sentAddr, biases1, biases2, biases3, weight1, weight2, biases0, prediction, outputReady, convOut);
+m: main port map (clk, newIn, inVec, newOut, outVec); 
 
 clk_process :process
 begin
@@ -82,108 +99,133 @@ variable tmp: std_logic_vector(31 downto 0);
 variable p1, p2 : integer := 0;
 variable b1 : std_logic := '0';
 begin
-    newSent <= not newSent;
+    newIn <= '0';
+    wait for 20ns;
+    state2 <= getSentnc;
     l1: for i in 0 to 63 loop
         l2: for j in 0 to 299 loop
             readline(test_vector,row);
             read(row,tmp);
             sentence <= tmp;
             sentAddr <= i*300 + j;
+            newIn <= not newIn;
+            inVec <= tmp;
 --            sentence(i)(j) <= tmp;
             wait for 20 ns;
         end loop l2;
     end loop l1;
-    newSent <= not newSent;
-    wait for 30 ns;
+    state2 <= getfilt1;
     l3: for i in 0 to 99 loop
-        l31: for j in 0 to 4 loop
+        l31: for j in 0 to 2 loop
             l4: for k in 0 to 299 loop
-                if (j = 4)then
-                    readline(test_vector23,row);
-                    read(row,tmp);
-                    addra3 <= i*5*300 + j*300 + k;
-                    dina3 <= tmp;
---                    filters3(i)(j)(k) <= tmp;
-                else
-                    if (j = 3)then
-                        readline(test_vector22,row);
-                        read(row,tmp);
-                        addra2 <= i*4*300 + j*300 + k;
-                        dina2 <= tmp;
---                        filters2(i)(j)(k) <= tmp;
-                        readline(test_vector23,row);
-                        read(row,tmp);
-                        addra3 <= i*5*300 + j*300 + k;
-                        dina3 <= tmp;
---                        filters3(i)(j)(k) <= tmp;
-                    else
-                        readline(test_vector2,row);
-                        read(row,tmp);
-                        addra1 <= i*3*300 + j*300 + k;
-                        dina1 <= tmp;
-        --                filters1(i)(j)(k) <= tmp;
-                        readline(test_vector22,row);
-                        read(row,tmp);
-                        addra2 <= i*4*300 + j*300 + k;
-                        dina2 <= tmp;
---                        filters2(i)(j)(k) <= tmp;
-                        readline(test_vector23,row);
-                        read(row,tmp);
-                        addra3 <= i*5*300 + j*300 + k;
-                        dina3 <= tmp;
---                        filters3(i)(j)(k) <= tmp;
-                    end if;
-                end if;
+                readline(test_vector2,row);
+                read(row,tmp);
+                addra1 <= i*3*300 + j*300 + k;
+                dina1 <= tmp;
+                newIn <= not newIn;
+                inVec <= tmp;
                 wait for 20 ns;
                 if (k = 0) then
                     wait for 60 ns;
                 end if;
             end loop l4;
         end loop l31;
---        l311: for j in 0 to 3 loop
---            l41: for k in 0 to 299 loop
---                readline(test_vector22,row);
---                read(row,tmp);
---                filters2(i)(j)(k) <= tmp;
---            end loop l41;
---        end loop l311;
---        l3111: for j in 0 to 4 loop
---            l411: for k in 0 to 299 loop
---                readline(test_vector23,row);
---                read(row,tmp);
---                filters3(i)(j)(k) <= tmp;
---            end loop l411;
---        end loop l3111;
     end loop l3;
-    wait for 20 ns;
+    state2 <= getfilt2;
+    l3f2: for i in 0 to 99 loop
+        l31f2: for j in 0 to 3 loop
+            l4f2: for k in 0 to 299 loop
+                readline(test_vector22,row);
+                read(row,tmp);
+                addra2 <= i*4*300 + j*300 + k;
+                dina2 <= tmp;
+                newIn <= not newIn;
+                inVec <= tmp;
+                wait for 20 ns;
+                if (k = 0) then
+                    wait for 60 ns;
+                end if;
+            end loop l4f2;
+        end loop l31f2;
+    end loop l3f2;
+    state2 <= getfilt3;
+    l3f3: for i in 0 to 99 loop
+        l31f3: for j in 0 to 4 loop
+            l4f3: for k in 0 to 299 loop
+                readline(test_vector23,row);
+                read(row,tmp);
+                addra3 <= i*5*300 + j*300 + k;
+                dina3 <= tmp;
+                newIn <= not newIn;
+                inVec <= tmp;
+                wait for 20 ns;
+                if (k = 0) then
+                    wait for 60 ns;
+                end if;
+            end loop l4f3;
+        end loop l31f3;
+    end loop l3f3;
+    state2 <= getbias1;
     l5: for i in 0 to 99 loop
         readline(test_vector3,row);
         read(row,tmp);
         biases1(i) <= tmp;
+        newIn <= not newIn;
+        inVec <= tmp;
+        wait for 20 ns;
+    end loop l5;
+    state2 <= getbias2;
+    l52: for i in 0 to 99 loop
         readline(test_vector32,row);
         read(row,tmp);
         biases2(i) <= tmp;
+        newIn <= not newIn;
+        inVec <= tmp;
+        wait for 20 ns;
+    end loop l52;
+    state2 <= getbias3;
+    l53: for i in 0 to 99 loop
         readline(test_vector33,row);
         read(row,tmp);
         biases3(i) <= tmp;
-    end loop l5;
+        newIn <= not newIn;
+        inVec <= tmp;
+        wait for 20 ns;
+    end loop l53;
+    state2 <= getweights;
     l6: for i in 0 to 599 loop
         readline(test_vector0,row);
         read(row,tmp);
         if (b1 = '0') then
             weight1(p1) <= tmp;
+            newIn <= not newIn;
+            inVec <= tmp;
+            weight1(p1) <= tmp;
             p1 := p1 + 1;
+            p1_s <= p1;
+            wait for 20 ns;
         else
             weight2(p2) <= tmp;
+            newIn <= not newIn;
+            inVec <= tmp;
+            weight2(p2) <= tmp;
             p2 := p2 + 1;
+            p2_s <= p2;
+            wait for 20 ns;
         end if;
         b1 := not b1;
+        b1_s <= b1;
     end loop l6;
+    state2 <= getbias0;
     l8: for i in 0 to 1 loop
         readline(test_vector1,row);
         read(row,tmp);
         biases0(i) <= tmp;
+        newIn <= not newIn;
+            inVec <= tmp;
+            wait for 20 ns;
     end loop l8;
+    state2 <= waitForCNN;
     inputReady <= not inputReady;
     wait for 20 ns;
     wait for 99999999 ms;

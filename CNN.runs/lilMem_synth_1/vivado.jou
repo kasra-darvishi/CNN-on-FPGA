@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Sat Nov  7 15:59:19 2020
+# Process ID: 9704
+# Current directory: D:/Programming/Projects/CNN-on-FPGA/CNN.runs/lilMem_synth_1
+# Command line: vivado.exe -log lilMem.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source lilMem.tcl
+# Log file: D:/Programming/Projects/CNN-on-FPGA/CNN.runs/lilMem_synth_1/lilMem.vds
+# Journal file: D:/Programming/Projects/CNN-on-FPGA/CNN.runs/lilMem_synth_1\vivado.jou
+#-----------------------------------------------------------
+source lilMem.tcl -notrace

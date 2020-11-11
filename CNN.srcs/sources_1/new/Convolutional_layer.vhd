@@ -24,7 +24,7 @@ end Convolutional_layer;
 
 architecture Behavioral of Convolutional_layer is
 
-component Convolve is
+component Convolve_ctrl is
   Generic(filterSize: integer := 3);
   Port (clk: in std_logic;
         inputReady : in std_logic;
@@ -44,9 +44,9 @@ signal fOutReady1, fOutReady2, fOutReady3 : std_logic;
 
 begin
 
-f1: Convolve generic map (3) port map (clk, inputReady, addra1, dina1, newSent, sentence, sentAddr, biases1, filterRes1, fOutReady1);
-f2: Convolve generic map (4) port map (clk, inputReady, addra2, dina2, newSent, sentence, sentAddr, biases2, filterRes2, fOutReady2);
-f3: Convolve generic map (5) port map (clk, inputReady, addra3, dina3, newSent, sentence, sentAddr, biases3, filterRes3, fOutReady3);
+f1: Convolve_ctrl generic map (3) port map (clk, inputReady, addra1, dina1, newSent, sentence, sentAddr, biases1, filterRes1, fOutReady1);
+f2: Convolve_ctrl generic map (4) port map (clk, inputReady, addra2, dina2, newSent, sentence, sentAddr, biases2, filterRes2, fOutReady2);
+f3: Convolve_ctrl generic map (5) port map (clk, inputReady, addra3, dina3, newSent, sentence, sentAddr, biases3, filterRes3, fOutReady3);
 
 outputReady <= fOutReady1 and fOutReady2 and fOutReady3;
 result <= filterRes3 & filterRes2 & filterRes1;
